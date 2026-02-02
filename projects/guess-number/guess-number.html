@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Угадай число</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Заставка -->
+<div id="splash">
+    <h1>Угадай число</h1>
+    <div class="credit">by:BANANCHIKIREAL</div>
+</div>
+
+<!-- ❄️ СНЕГ -->
+<div id="snowflake-container"></div>
+
+<div class="game-container" id="mainGame">
+    <h1 class="main-title">🔢 УГАДАЙ ЧИСЛО</h1>
+    <p class="info">Я загадал число от <strong>1 до 100</strong>. У тебя есть <strong>10 попыток</strong>, чтобы
+        угадать!</p>
+
+    <div class="attempts">🕗 Попыток осталось: <span id="attempts">10</span></div>
+
+    <input type="number" id="guess-input" min="1" max="100" placeholder="Введи число (1–100)" autocomplete="off">
+
+    <div>
+        <button class="btn btn-guess" id="submit-btn">ПРОВЕРИТЬ</button>
+        <button class="btn btn-reset" id="reset-btn">НОВАЯ ИГРА</button>
+    </div>
+
+    <div class="feedback" id="feedback">
+        Сделай первую попытку!
+    </div>
+
+    <a href="../../whole_index/index.html" class="home-link">🏠 Вернуться на портфолио</a>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

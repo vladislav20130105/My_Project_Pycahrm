@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Quantum Reflex</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- СНЕГ — С САМОГО НАЧАЛА -->
+<div class="snowflakes" id="snowflakes"></div>
+
+<!-- Заставка -->
+<div id="splash">
+    <h1>QUANTUM REFLEX</h1>
+    <p>by: BANANCHIKIREALRB</p>
+</div>
+
+<!-- ВСЁ СОДЕРЖИМОЕ -->
+<div id="main-content"
+     style="display: none; width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center;">
+
+    <div id="portfolio-link">
+        <a href="../../whole_index/index.html">← Назад к портфолио</a>
+    </div>
+
+    <div id="header">
+        <h2>Quantum Reflex</h2>
+        <div id="stats">
+            Очки: <span id="score">0</span> |
+            Уровень: <span id="level">1</span> |
+            Рекорд: <span id="high-score">0</span>
+        </div>
+    </div>
+
+    <!-- ИГРОВАЯ РАМКА (только сетка) -->
+    <div id="game-table">
+        <div id="grid">
+            <div class="cell" data-id="0">1</div>
+            <div class="cell" data-id="1">2</div>
+            <div class="cell" data-id="2">3</div>
+            <div class="cell" data-id="3">4</div>
+            <div class="cell" data-id="4">5</div>
+            <div class="cell" data-id="5">6</div>
+        </div>
+    </div>
+
+    <!-- КНОПКИ ВНЕ РАМКИ -->
+    <div class="controls">
+        <button id="start-btn" class="btn">Начать игру</button>
+        <button id="settings-btn" class="btn">Настройки</button>
+    </div>
+
+    <!-- НАСТРОЙКИ -->
+    <div id="settings">
+        <h3>Настройки</h3>
+        <button id="reset-btn" class="btn">Сбросить прогресс</button>
+    </div>
+
+</div>
+
+<!-- Админ-панель -->
+<div id="admin-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:1000;">
+    <div id="admin-overlay"
+         style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);"></div>
+    <div id="admin-dialog"
+         style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#0f0f1a;border:1px solid #2a2a45;border-radius:12px;padding:25px;width:300px;text-align:center;box-shadow:0 0 20px rgba(0,245,212,0.3);">
+        <h3>Админ-панель</h3>
+        <p>Введите пароль:</p>
+        <input type="password" id="admin-pass" placeholder="••••••••" maxlength="20"
+               style="width:100%;padding:10px;margin:10px 0;border:1px solid #2a2a45;border-radius:6px;background:#1a1a25;color:white;font-family:'Orbitron',sans-serif;">
+        <div style="margin-top:10px;">
+            <button id="admin-login" class="btn">Войти</button>
+            <button id="admin-cancel" class="btn" style="background:#333;">Отмена</button>
+        </div>
+        <p id="admin-error" style="color:#ff5588;margin-top:8px;font-size:0.9rem;min-height:1.2rem;"></p>
+    </div>
+</div>
+
+<div id="admin-panel"
+     style="display:none;position:fixed;top:20px;right:20px;width:320px;background:rgba(15,15,26,0.95);border:1px solid var(--neon-turquoise);border-radius:10px;padding:15px;color:white;font-family:'Orbitron',sans-serif;box-shadow:0 0 15px rgba(0,245,212,0.4);z-index:1000;">
+    <div id="admin-header"
+         style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #2a2a45;">
+        <h3>🔒 Админ-панель</h3>
+        <button id="admin-logout" class="btn" style="font-size:0.8rem;padding:4px 10px;">Выйти</button>
+    </div>
+    <div id="admin-content">
+        <p><strong>Текущая последовательность (бот):</strong></p>
+        <div id="admin-sequence"
+             style="background:rgba(0,0,0,0.3);padding:10px;border-radius:6px;font-family:monospace;color:var(--neon-turquoise);min-height:1.5rem;word-break:break-all;">
+            []
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

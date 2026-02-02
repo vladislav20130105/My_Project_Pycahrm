@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>📚 Генератор смешных историй</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="snowflake-container"></div>
+
+<div id="splash-screen">
+    <h1 id="splash-title">Генератор смешных историй</h1>
+    <p id="splash-subtitle">by: @BANANCHIKIREALRB</p>
+</div>
+
+<div id="main">
+    <h1 class="main-title">📚 Генератор смешных историй</h1>
+    <p class="subtitle">Заполни поля — получи историю в стиле кибер-ночи!</p>
+
+    <div class="controls">
+        <label>Твоё имя:<input type="text" id="name" class="form-control" placeholder="Напр.: Кибер-Саша"/></label>
+        <label>Прилагательное:<input type="text" id="adjective1" class="form-control"
+                                     placeholder="Напр.: голографический"/></label>
+        <label>Животное:<input type="text" id="animal" class="form-control" placeholder="Напр.: робо-кот"/></label>
+        <label>Ещё прилагательное:<input type="text" id="adjective2" class="form-control"
+                                         placeholder="Напр.: неоновый"/></label>
+        <label>Глагол:<input type="text" id="verb" class="form-control" placeholder="Напр.: взламывать мечты"/></label>
+        <label>Еда:<input type="text" id="food" class="form-control" placeholder="Напр.: энергосмузи"/></label>
+        <label>Число:<input type="number" id="number" class="form-control" placeholder="Напр.: 42"/></label>
+        <label>
+            Цвет:
+            <select id="color" class="form-control">
+                <option value="">-- Выбери --</option>
+                <option value="неоново-розовый">🩷 Неоново-розовый</option>
+                <option value="кибер-бирюзовый">💎 Кибер-бирюзовый</option>
+                <option value="тёмно-фиолетовый">🟣 Тёмно-фиолетовый</option>
+                <option value="радужный">🌈 Радужный</option>
+            </select>
+        </label>
+        <label>Существительное:<input type="text" id="noun" class="form-control"
+                                      placeholder="Напр.: сервер любви"/></label>
+        <button id="generate-btn" class="btn btn-outline-cyan">✨ Создать историю</button>
+    </div>
+
+    <!-- 🔘 Кнопка "Вернуться на портфолио" -->
+    <div class="back-button-container">
+      <a href="../../whole_index/index.html" class="btn btn-orange">🏠 Вернуться на портфолио</a>
+    </div>
+
+    <div class="story-container" id="story-container">
+        <h2>🎉 Твоя история:</h2>
+        <div class="story" id="story"></div>
+        <button id="reset-btn" class="btn btn-pink">🔄 Новая история</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

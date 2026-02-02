@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Простой калькулятор для детей</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Заставка -->
+<div id="splash">
+    <h1>калькулятор</h1>
+    <div class="credit">by:BANANCHIKIREAL</div>
+</div>
+
+<!-- Снег -->
+<div id="snowflake-container"></div>
+
+<div class="calc-container" id="mainCalc">
+    <h1 class="main-title">🧮 ПРОСТОЙ КАЛЬКУЛЯТОР</h1>
+
+    <p class="step">ШАГ 1: введите первое число</p>
+    <input id="a" type="text" placeholder="Например: 2 или 2,5">
+
+    <p class="step">ШАГ 2: выберите знак</p>
+    <select id="op">
+        <option value="+">➕</option>
+        <option value="-">➖</option>
+        <option value="*">✖️</option>
+        <option value="/">➗</option>
+    </select>
+
+    <p class="step">ШАГ 3: введите второе число</p>
+    <input id="b" type="text" placeholder="Например: 3">
+
+    <p class="step">ШАГ 4: нажмите кнопку</p>
+
+    <div class="buttons">
+        <button class="btn btn-calculate" id="go">ПОСЧИТАТЬ</button>
+        <button class="btn btn-clear" id="clear">ОЧИСТИТЬ</button>
+    </div>
+
+    <h2>РЕЗУЛЬТАТ</h2>
+    <div class="result-box" id="result">Тут появится ответ</div>
+
+    <a href="../../whole_index/index.html" class="back-link">🏠 Вернуться на портфолио</a>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

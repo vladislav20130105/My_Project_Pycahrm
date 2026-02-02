@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Три Стаканчика — Киберстиль</title>
+
+    <!-- Bootstrap + Иконки + Orbitron -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ❄️ СНЕГ -->
+<div id="snowflake-container"></div>
+
+<h1>✨ Три Стаканчика ✨</h1>
+
+<!-- Кнопка "Вернуться на портфолио" -->
+<div id="portfolioLink">
+    <a href="../../whole_index/index.html" class="back-link">🏠 Вернуться на портфолио</a>
+</div>
+
+<div class="score-board">
+    <div class="score-item">
+        <div class="score-label">ПОБЕД</div>
+        <div class="score-value" id="wins">0</div>
+    </div>
+    <div class="score-item">
+        <div class="score-label">ПОРАЖЕНИЙ</div>
+        <div class="score-value" id="losses">0</div>
+    </div>
+</div>
+
+<div id="message">Выбери уровень сложности</div>
+
+<div class="d-flex gap-2 mb-3">
+    <button class="btn btn-sm btn-level active" data-level="easy">Лёгкий</button>
+    <button class="btn btn-sm btn-level" data-level="medium">Средний</button>
+    <button class="btn btn-sm btn-level" data-level="hard">Сложный</button>
+</div>
+
+<button id="start" class="btn btn-outline-cyan">Начать игру</button>
+
+<div id="game">
+    <div class="cup" id="cup0">
+        <div class="ball" id="ball0"></div>
+    </div>
+    <div class="cup" id="cup1">
+        <div class="ball" id="ball1"></div>
+    </div>
+    <div class="cup" id="cup2">
+        <div class="ball" id="ball2"></div>
+    </div>
+</div>
+
+<button id="reset" class="btn btn-pink">Играть снова</button>
+
+<script>
+    // ❄️ СНЕГ
+    (function() {
+      const container = document.getElementById('snowflake-container');
+      const snowflakesCount = 80;
+      for (let i = 0; i < snowflakesCount; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        const size = Math.random() * 3 + 1.5;
+        snowflake.style.width = `${size}px`;
+        snowflake.style.height = `${size}px`;
+        snowflake.style.left = `${Math.random() * 100}vw`;
+        snowflake.style.opacity = Math.random() * 0.5 + 0.2;
+        const fallDuration = Math.random() * 8 + 6;
+        const drift = (Math.random() - 0.5) * 30;
+        const delay = Math.random() * 5;
+        snowflake.style.animation = `fall-${i} ${fallDuration}s linear infinite ${delay}s`;
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes fall-${i} {
+            0% { transform: translateY(-10vh) translateX(0); }
+            100% { transform: translateY(100vh) translateX(${drift}px); }
+          }
+        `;
+        document.head.appendChild(style);
+        container.appendChild(snowflake);
+      }
+    })();
+
+    // 🎮 ИГРОВАЯ ЛОГИКА — ПОЛНОСТЬЮ ИСПРАВЛЕНА
+    let wins = localStorage.getItem('threeCupsWins') ? parseInt(localStorage.getItem('threeCupsWins')) : 0;
+    let losses = localStorage.getItem('threeCupsLosses') ? parseInt(localStorage.getItem('threeCupsLosses')) : 0;
+    document.getElementById('wins').textContent = wins;
+    document.getElementById('losses').textContent = losses;
+
+    let ballPos = 0;
+    let currentLevel = 'easy';
+    let isAnimating = false;
+    let isGameActive = false;
+
+    const POSITIONS = [40, 280, 520];
+    let visualOrder = [0, 1, 2];
+
+    function resetGameView() {
+      visualOrder = [0, 1, 2];
+      updateCupPositions();
+      document.querySelectorAll('.ball').forEach(b => b.style.display = 'none');
+      document.querySelectorAll('.cup').forEach(c => c.classList.remove('highlight'));
+    }
+
+    function updateCupPositions() {
+      for (let i = 0; i < 3; i++) {
+        const cup = document.getElementById(`cup${visualOrder[i]}`);
+        cup.style.left = POSITIONS[i] + 'px';
+      }
+    }
+
+    document.querySelectorAll('.btn-level').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.btn-level').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentLevel = btn.dataset.level;
+      });
+    });
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function animateCups([posA, posB]) {
+      const cupA = document.getElementById(`cup${visualOrder[posA]}`);
+      const cupB = document.getElementById(`cup${visualOrder[posB]}`);
+
+      cupA.style.transform = 'translateY(-60px)';
+      cupB.style.transform = 'translateY(-60px)';
+      cupA.style.zIndex = '20';
+      cupB.style.zIndex = '20';
+
+      await sleep(300);
+
+      cupA.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      cupB.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+
+      cupA.style.left = POSITIONS[posB] + 'px';
+      cupB.style.left = POSITIONS[posA] + 'px';
+
+      await sleep(600);
+
+      cupA.style.transform = 'translateY(0)';
+      cupB.style.transform = 'translateY(0)';
+
+      await sleep(300);
+
+      cupA.style.transition = '';
+      cupB.style.transition = '';
+      cupA.style.zIndex = '';
+      cupB.style.zIndex = '';
+
+      [visualOrder[posA], visualOrder[posB]] = [visualOrder[posB], visualOrder[posA]];
+
+      attachCupListeners();
+    }
+
+    function attachCupListeners() {
+      document.querySelectorAll('.cup').forEach(cup => {
+        cup.onclick = null;
+      });
+      if (isGameActive) {
+        document.querySelectorAll('.cup').forEach(cup => {
+          cup.onclick = () => {
+            const cupIndex = parseInt(cup.id.replace('cup', ''));
+            guess(cupIndex);
+          };
+        });
+      }
+    }
+
+    function getRandomSwap() {
+      const a = Math.floor(Math.random() * 3);
+      let b;
+      do { b = Math.floor(Math.random() * 3); } while (b === a);
+      return [a, b];
+    }
+
+    async function startGame() {
+      if (isAnimating) return;
+      isAnimating = true;
+      isGameActive = true;
+
+      document.getElementById('portfolioLink').style.display = 'none';
+      document.getElementById('start').style.display = 'none';
+      document.querySelectorAll('.btn-level').forEach(b => b.style.display = 'none');
+      document.getElementById('message').textContent = 'Смотри внимательно!';
+
+      resetGameView();
+      document.getElementById(`ball${ballPos}`).style.display = 'block';
+
+      await sleep(1000);
+
+      document.querySelectorAll('.ball').forEach(b => b.style.display = 'none');
+      document.getElementById('message').textContent = 'Перемешиваем...';
+
+      const swaps = currentLevel === 'easy' ? 3 : currentLevel === 'medium' ? 5 : 8;
+
+      for (let i = 0; i < swaps; i++) {
+        const swap = getRandomSwap();
+        await animateCups(swap);
+      }
+
+      document.getElementById('message').textContent = 'Где мяч? Кликни на стакан!';
+      attachCupListeners();
+      isAnimating = false;
+    }
+
+    function guess(cupIndex) {
+      if (!isGameActive) return;
+
+      const correct = (cupIndex === ballPos);
+
+      if (correct) {
+        wins++;
+        localStorage.setItem('threeCupsWins', wins);
+        document.getElementById('wins').textContent = wins;
+        document.getElementById('message').textContent = '✅ Правильно!';
+      } else {
+        losses++;
+        localStorage.setItem('threeCupsLosses', losses);
+        document.getElementById('losses').textContent = losses;
+        document.getElementById('message').textContent = '❌ Мимо!';
+      }
+
+      document.getElementById(`ball${ballPos}`).style.display = 'block';
+      document.getElementById(`cup${ballPos}`).classList.add('highlight');
+
+      document.getElementById('reset').style.display = 'block';
+      isGameActive = false;
+      document.getElementById('portfolioLink').style.display = 'block';
+    }
+
+    document.getElementById('start').addEventListener('click', () => {
+      ballPos = Math.floor(Math.random() * 3);
+      startGame();
+    });
+
+    document.getElementById('reset').addEventListener('click', () => {
+      document.getElementById('reset').style.display = 'none';
+      document.getElementById('message').textContent = 'Выбери уровень сложности';
+      document.getElementById('start').style.display = 'inline-block';
+      document.querySelectorAll('.btn-level').forEach(b => b.style.display = 'inline-block');
+      resetGameView();
+      isGameActive = false;
+      document.getElementById('portfolioLink').style.display = 'block';
+    });
+
+    resetGameView();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,281 @@
+ :root {
+      --bg: #090912;
+      --card-bg: #0f0f1a;
+      --accent-1: #00f5d4;
+      --accent-2: #f15bb5;
+      --text: #e0e0ff;
+      --text-muted: #8a8aa0;
+      --border: #2a2a45;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      position: relative;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    /* ❄️ СНЕГ — ТОЛЬКО НА ЗАДНЕМ ФОНЕ */
+    #snowflake-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .snowflake {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.7;
+      filter: blur(0.3px);
+      top: -20px;
+    }
+
+    /* ОБЩИЙ КОНТЕЙНЕР */
+    #content-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    h1, h2, .btn, .guess-btn, .mode-btn, #splash-subtitle, .back-to-portfolio {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    /* === ЗАСТАВКА === */
+    #splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      opacity: 1;
+      transition: opacity 0.5s ease-out;
+    }
+
+    #splash-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-1));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 300% 300%;
+      animation: gradientShift 3s ease-in-out infinite;
+      margin-bottom: 0;
+      letter-spacing: 0.5px;
+    }
+
+    #splash-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      position: absolute;
+      bottom: 30px;
+      margin: 0;
+    }
+
+    /* === ИГРОВОЙ КОНТЕНТ === */
+    .game-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      display: none;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-1));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 300% 300%;
+      animation: gradientShift 5s ease-in-out infinite;
+    }
+
+    .color-display {
+      height: 120px;
+      border-radius: 16px;
+      margin: 1.5rem 0;
+      border: 2px dashed var(--text-muted);
+      background: #1a1a25;
+    }
+
+    .hint {
+      text-align: center;
+      font-size: 1.2rem;
+      min-height: 30px;
+      margin: 1.2rem 0;
+      font-family: 'Orbitron', sans-serif;
+      color: var(--accent-1);
+      text-shadow: 0 0 8px rgba(0, 245, 212, 0.4);
+    }
+
+    .guess-buttons, .mode-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 12px;
+      margin: 1.5rem 0;
+    }
+
+    .guess-btn, .mode-btn {
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.85rem;
+      letter-spacing: 0.7px;
+      text-align: center;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.3rem;
+      line-height: 1.2;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .guess-btn:hover:not(:disabled), .mode-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .guess-btn:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    .guess-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .mode-btn {
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .btn-restart {
+      background: transparent;
+      color: var(--accent-2);
+      border: 2px solid var(--accent-2);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      transition: all 0.3s;
+    }
+
+    .btn-restart:hover {
+      background: var(--accent-2);
+      color: var(--bg);
+      box-shadow: 0 0 20px rgba(241, 91, 181, 0.6);
+      transform: translateY(-2px);
+    }
+
+    /* КНОПКА ПОД ОКНОМ */
+    .back-to-portfolio {
+      background: transparent;
+      color: var(--accent-1);
+      border: 2.5px solid var(--accent-1);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+      padding: 0.7rem 1.6rem;
+      border-radius: 30px;
+      transition: all 0.3s;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      letter-spacing: 1px;
+      margin-top: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .back-to-portfolio:hover {
+      background: var(--accent-1);
+      color: var(--bg);
+      box-shadow: 0 0 20px rgba(0, 245, 212, 0.7);
+      transform: translateY(-2px);
+    }
+
+    .back-to-portfolio.hidden {
+      display: none;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @media (max-width: 576px) {
+      .game-container {
+        padding: 1.5rem;
+      }
+      .title {
+        font-size: 1.9rem;
+      }
+      .guess-btn, .mode-btn {
+        font-size: 0.75rem;
+        min-height: 55px;
+      }
+      .controls {
+        flex-direction: column;
+      }
+      .guess-buttons, .mode-buttons {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      #splash-title {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .guess-buttons, .mode-buttons {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 992px) {
+      .guess-buttons {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }

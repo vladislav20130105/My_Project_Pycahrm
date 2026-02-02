@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @keyframes rainbowShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="splash-screen">
+    <h1 id="splash-title">Моё портфолио</h1>
+    <p id="splash-subtitle">by: BANANCHIKIREAL</p>
+</div>
+<div id="snowflake-container"></div>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#home">
+            <i class="bi bi-code-slash me-2"></i>Моё портфолио
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="#home">Главная</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">Обо мне</a></li>
+                <li class="nav-item"><a class="nav-link" href="#portfolio">Портфолио</a></li>
+                <li class="nav-item"><a class="nav-link" href="#skills">Навыки</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Контакты</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section id="home">
+    <div class="container h-100">
+        <div class="row align-items-center h-100">
+            <div class="col-lg-6">
+                <h1>Привет! Я разработчик</h1>
+                <p class="lead">Создаю красивые и функциональные веб-приложения с использованием современных
+                    технологий</p>
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="#portfolio" class="btn btn-pink btn-lg">
+                        <i class="bi bi-briefcase me-2"></i>Мои работы
+                    </a>
+                    <a href="#contact" class="btn btn-outline-cyan btn-lg">
+                        <i class="bi bi-envelope me-2"></i>Связаться
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-end mt-4 mt-lg-0">
+                <div class="avatar-container mt-5">
+                    <img src="../img/me.png" alt="Аватар" class="avatar-img">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="about" class="py-5">
+    <div class="container">
+        <h2>Обо мне</h2>
+        <p class="lead text-muted">Увлечённый разработчик с опытом создания современных веб-приложений</p>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="icon-circle">
+                            <i class="bi bi-code-slash"></i>
+                        </div>
+                        <h5 class="card-title">Разработка</h5>
+                        <p class="card-text">Создаю веб-приложения с использованием HTML, CSS, JavaScript и современных
+                            фреймворков</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="icon-circle">
+                            <i class="bi bi-palette" style="color: #06d6a0;"></i>
+                        </div>
+                        <h5 class="card-title">Дизайн</h5>
+                        <p class="card-text">Разрабатываю пользовательские интерфейсы, которые не только красивы, но и
+                            удобны</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="icon-circle">
+                            <i class="bi bi-lightbulb" style="color: var(--accent-3);"></i>
+                        </div>
+                        <h5 class="card-title">Инновации</h5>
+                        <p class="card-text">Постоянно изучаю новые технологии и применяю их в своих проектах</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="portfolio" class="py-5">
+    <div class="container">
+        <h2>Мои работы</h2>
+        <p class="lead text-muted">Примеры проектов, над которыми я работал</p>
+        <div class="portfolio-slider-container">
+            <div class="portfolio-slider">
+                <div class="portfolio-slide">
+                    <div class="card" style="width: 340px; max-width: 95vw;">
+                        <div class="project-icon" style="background: linear-gradient(135deg, #4A00E0, #9400D3);">
+                            <i class="bi bi-calculator"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Калькулятор</h5>
+                            <p class="card-text">Интерактивный калькулятор с красивым дизайном и поддержкой
+                                клавиатуры</p>
+                            <div class="tech-badges-container d-flex gap-2 justify-content-start px-0">
+                                <span class="tech-badge html">HTML</span>
+                                <span class="tech-badge css">CSS</span>
+                                <span class="tech-badge js">JS</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 pt-0">
+                            <a href="../projects/calculator/calculator.html" class="btn btn-sm"
+                               style="color: #9400D3; border-color: #9400D3;"
+                               onmouseover="this.style.backgroundColor='#9400D3'; this.style.color='white'; this.style.boxShadow='0 0 15px rgba(148, 0, 211, 0.6)'"
+                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#9400D3'; this.style.boxShadow='none'">
+                                <i class="bi bi-eye me-1"></i>Посмотреть
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <div class="card" style="width: 340px; max-width: 95vw;">
+                        <div class="project-icon" style="background: linear-gradient(135deg, #00C9FF, #92FE9D);">
+                            <i class="bi bi-123"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Угадай число</h5>
+                            <p class="card-text">Увлекательная игра на угадывание числа с системой подсчёта очков</p>
+                            <div class="tech-badges-container d-flex gap-2 justify-content-start px-0">
+                                <span class="tech-badge html">HTML</span>
+                                <span class="tech-badge css">CSS</span>
+                                <span class="tech-badge js">JS</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 pt-0">
+                            <a href="../projects/guess-number/guess-number.html" class="btn btn-sm"
+                               style="color: #00C9FF; border-color: #00C9FF;"
+                               onmouseover="this.style.backgroundColor='#00C9FF'; this.style.color='white'; this.style.boxShadow='0 0 15px rgba(0, 201, 255, 0.6)'"
+                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#00C9FF'; this.style.boxShadow='none'">
+                                <i class="bi bi-eye me-1"></i>Посмотреть
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <div class="card" style="width: 340px; max-width: 95vw;">
+                        <div class="project-icon" style="background: linear-gradient(135deg, #D310AC, #FF6B9D);">
+                            <i class="bi bi-hand-index"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Камень, ножницы, бумага</h5>
+                            <p class="card-text">Классическая игра против компьютера с подсчётом побед и анимациями</p>
+                            <div class="tech-badges-container d-flex gap-2 justify-content-start px-0">
+                                <span class="tech-badge html">HTML</span>
+                                <span class="tech-badge css">CSS</span>
+                                <span class="tech-badge js">JS</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 pt-0">
+                            <a href="../projects/rock-paper-scissors/rock-paper-scissors.html" class="btn btn-sm"
+                               style="color: #D310AC; border-color: #D310AC;"
+                               onmouseover="this.style.backgroundColor='#D310AC'; this.style.color='white'; this.style.boxShadow='0 0 15px rgba(211, 16, 172, 0.6)'"
+                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#D310AC'; this.style.boxShadow='none'">
+                                <i class="bi bi-eye me-1"></i>Посмотреть
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <div class="card" style="width: 340px; max-width: 95vw;">
+                        <div class="project-icon" style="background: linear-gradient(135deg, #8A2BE2, #DA22FF);">
+                            <i class="bi bi-grid-3x3"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Крестики-нолики</h5>
+                            <p class="card-text">Классическая игра для двух игроков с визуальной индикацией победы</p>
+                            <div class="tech-badges-container d-flex gap-2 justify-content-start px-0">
+                                <span class="tech-badge html">HTML</span>
+                                <span class="tech-badge css">CSS</span>
+                                <span class="tech-badge js">JS</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 pt-0">
+                            <a href="../projects/tic-tac-toe/tic-tac-toe.html" class="btn btn-sm"
+                               style="color: #8A2BE2; border-color: #8A2BE2;"
+                               onmouseover="this.style.backgroundColor='#8A2BE2'; this.style.color='white'; this.style.boxShadow='0 0 15px rgba(138, 43, 226, 0.6)'"
+                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#8A2BE2'; this.style.boxShadow='none'">
+                                <i class="bi bi-eye me-1"></i>Посмотреть
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <div class="card" style="width: 340px; max-width: 95vw;">
+                        <div class="project-icon"
+                             style="background: linear-gradient(135deg, #00F5D4, #F15BB5); position: relative;">
+                            <i class="bi bi-controller"></i>
+                            <span class="glow-badge best-badge">Мой лучший проект!</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Змейка</h5>
+                            <p class="card-text">Классическая змейка с настраиваемой скоростью, разными типами яблок,
+                                скинами и эффектами</p>
+                            <div class="tech-badges-container d-flex gap-2 justify-content-start px-0">
+                                <span class="tech-badge html">HTML</span>
+                                <span class="tech-badge css">CSS</span>
+                                <span class="tech-badge js">JS</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 pt-0">
+                            <a href="../projects/Snake/Snake.html" class="btn btn-sm"
+                               style="color: #00F5D4; border-color: #00F5D4;"
+                               onmouseover="this.style.backgroundColor='#00F5D4'; this.style.color='var(--bg)'; this.style.boxShadow='0 0 15px rgba(0, 245, 212, 0.6)'"
+                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#00F5D4'; this.style.boxShadow='none'">
+                                <i class="bi bi-eye me-1"></i>Посмотреть
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <div class="card" style="width: 340px; max-width: 95vw;">
+                        <div class="project-icon"
+                             style="background: linear-gradient(135deg, #4A00E0, #8A2BE2); position: relative; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-cup-hot" style="font-size: 4rem; color: white;"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Угадай, где мяч</h5>
+                            <p class="card-text">Классическая игра с тремя стаканчиками: следи за мячом и угадай, где он
+                                спрятан!</p>
+                            <div class="tech-badges-container d-flex gap-2 justify-content-start px-0">
+                                <span class="tech-badge html">HTML</span>
+                                <span class="tech-badge css">CSS</span>
+                                <span class="tech-badge js">JS</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 pt-0">
+                            <a href="../projects/three-cups/three-cups.html" class="btn btn-sm"
+                               style="color: #4A00E0; border-color: #4A00E0;"
+                               onmouseover="this.style.backgroundColor='#4A00E0'; this.style.color='white'; this.style.boxShadow='0 0 15px rgba(74, 0, 224, 0.6)'"
+                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#4A00E0'; this.style.boxShadow='none'">
+                                <i class="bi bi-eye me-1"></i>Посмотреть
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <div class="card" style="width: 340px; max-width: 95vw;">
+                        <!-- 🌈 ФОН ИКОНКИ — радужный -->
+                        <div class="project-icon"
+                             style="background: linear-gradient(90deg,
+                   #ff0000, #ff8000, #ffff00,
+                   #80ff00, #00ff80, #00ffff,
+                   #0080ff, #0000ff, #8000ff,
+                   #ff00ff, #ff0080, #ff0000);
+                background-size: 600% 600%;
+                animation: rainbowShift 5s linear infinite;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;">
+                            <i class="bi bi-palette" style="font-size: 4rem; color: white;"></i>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title">Угадай Цвет</h5>
+                            <p class="card-text">Угадай загаданный цвет из 6/12/24 вариантов! С подсказками
+                                «тепло/холодно».</p>
+                            <div class="tech-badges-container d-flex gap-2 justify-content-start px-0">
+                                <span class="tech-badge html">HTML</span>
+                                <span class="tech-badge css">CSS</span>
+                                <span class="tech-badge js">JS</span>
+                            </div>
+                        </div>
+
+                        <!-- 🔘 ОБЫЧНАЯ КНОПКА, КАК У ОСТАЛЬНЫХ -->
+                        <div class="card-footer bg-transparent border-0 pt-0">
+                            <a href="../projects/color-quesser/color-guesser.html" class="btn btn-sm"
+                               style="color: #00F5D4; border-color: #00F5D4;"
+                               onmouseover="this.style.backgroundColor='#00F5D4'; this.style.color='var(--bg)'; this.style.boxShadow='0 0 15px rgba(0, 245, 212, 0.6)'"
+                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#00F5D4'; this.style.boxShadow='none'">
+                                <i class="bi bi-eye me-1"></i>Посмотреть
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <div class="card" style="width: 340px; max-width: 95vw;">
+                        <div class="project-icon"
+                             style="background: linear-gradient(135deg, #FF6B35, #F15BB5); position: relative;">
+                            <i class="bi bi-speedometer2"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Гонка на выживание</h5>
+                            <p class="card-text">Аркадная гонка с препятствиями, рекордами и ускорением. Управляй
+                                машиной и избегай столкновений!</p>
+                            <div class="tech-badges-container d-flex gap-2 justify-content-start px-0">
+                                <span class="tech-badge html">HTML</span>
+                                <span class="tech-badge css">CSS</span>
+                                <span class="tech-badge js">JS</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 pt-0">
+                            <a href="../projects/race/race.html" class="btn btn-sm"
+                               style="color: #FF6B35; border-color: #FF6B35;"
+                               onmouseover="this.style.backgroundColor='#FF6B35'; this.style.color='var(--bg)'; this.style.boxShadow='0 0 15px rgba(255, 107, 53, 0.6)';"
+                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#FF6B35'; this.style.boxShadow='none';">
+                                <i class="bi bi-eye me-1"></i>Посмотреть
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <div class="card" style="width: 340px; max-width: 95vw;">
+                        <div class="project-icon"
+                             style="background: linear-gradient(135deg, #6A0DAD, #00F5D4); position: relative;">
+                            <i class="bi bi-lightning-charge"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Quantum Reflex</h5>
+                            <p class="card-text">Нейро-рефлекс игра: запоминай последовательность и повторяй её
+                                максимально быстро!</p>
+                            <div class="tech-badges-container d-flex gap-2 justify-content-start px-0">
+                                <span class="tech-badge html">HTML</span>
+                                <span class="tech-badge css">CSS</span>
+                                <span class="tech-badge js">JS</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 pt-0">
+                            <a href="../projects/quantum-reflex/quantum-reflex.html" class="btn btn-sm"
+                               style="color: #6A0DAD; border-color: #6A0DAD;"
+                               onmouseover="this.style.backgroundColor='#6A0DAD'; this.style.color='white'; this.style.boxShadow='0 0 15px rgba(106, 13, 173, 0.6)';"
+                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#6A0DAD'; this.style.boxShadow='none';">
+                                <i class="bi bi-eye me-1"></i>Посмотреть
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <div class="card" style="width: 340px; max-width: 95vw;">
+                        <div class="project-icon"
+                             style="background: linear-gradient(135deg, #FF6B6B, #4ECDC4); position: relative; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-dice-5" style="font-size: 4rem; color: white;"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">UNO Game</h5>
+                            <p class="card-text">Полноценная игра UNO против бота с анимациями, спецкартами и красивым
+                                дизайном.</p>
+                            <div class="tech-badges-container d-flex gap-2 justify-content-start px-0">
+                                <span class="tech-badge html">HTML</span>
+                                <span class="tech-badge css">CSS</span>
+                                <span class="tech-badge js">JS</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 pt-0">
+                            <!-- ✅ РАБОЧАЯ КНОПКА С HOVER-ЭФФЕКТОМ -->
+                            <a href="../projects/UNO/UNO.html" class="btn btn-sm"
+                               style="color: #FF6B6B; border-color: #FF6B6B;"
+                               onmouseover="this.style.backgroundColor='#FF6B6B'; this.style.color='var(--bg)'; this.style.boxShadow='0 0 15px rgba(255, 107, 107, 0.6)'"
+                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#FF6B6B'; this.style.boxShadow='none'">
+                                <i class="bi bi-eye me-1"></i>Посмотреть
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-nav prev" aria-label="Предыдущий">‹</button>
+                <button class="slider-nav next" aria-label="Следующий">›</button>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="skills" class="py-5 bg-light">
+    <div class="container">
+        <h2>Навыки</h2>
+        <p class="lead text-muted">Технологии, которые я использую в работе</p>
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-md-3 d-flex justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="bi bi-filetype-html text-danger skill-icon"></i>
+                        <h6 class="card-title">HTML5</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 d-flex justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="bi bi-filetype-css text-primary skill-icon"></i>
+                        <h6 class="card-title">CSS3</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 d-flex justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="bi bi-filetype-js text-warning skill-icon"></i>
+                        <h6 class="card-title">JavaScript</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 d-flex justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="bi bi-bootstrap text-purple skill-icon"></i>
+                        <h6 class="card-title">Bootstrap</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="contact" class="py-5 bg-light">
+    <div class="container">
+        <h2>Связаться со мной</h2>
+        <p class="lead text-muted">Готов к новым проектам и сотрудничеству</p>
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="icon-circle">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+                        <h5 class="card-title">Email</h5>
+                        <p class="card-text">duka_vladislav00@mail.ru</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="icon-circle">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+                        <h5 class="card-title">Телефон</h5>
+                        <p class="card-text">+375 29 732 40 16</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="icon-circle">
+                            <i class="bi bi-github"></i>
+                        </div>
+                        <h5 class="card-title">GitHub</h5>
+                        <p class="card-text">github.com/username</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ✅ ФОРМА + МИНИ-АВАТАР СПРАВА -->
+        <div class="row position-relative">
+            <div class="col-12 col-lg-11 px-3 px-md-4 px-lg-5">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <h4 class="card-title text-center mb-4">Написать сообщение</h4>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label">Имя</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Ваше имя" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Ваш email"
+                                           required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="subject" class="form-label">Тема</label>
+                                    <input type="text" class="form-control" id="subject" placeholder="Тема сообщения"
+                                           required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="message" class="form-label">Сообщение</label>
+                                    <textarea class="form-control" id="message" rows="4" placeholder="Ваше сообщение"
+                                              required></textarea>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="bi bi-send me-2"></i>Отправить сообщение
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-1 d-flex justify-content-center align-items-end mt-4 mt-lg-0">
+                <img src="../img/me.png" alt="Аватар" class="contact-avatar">
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-3 mb-md-0">
+                <p class="mb-0">© 2025 Моё портфолио. Сделано с ❤️</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                    <a href="#"><i class="bi bi-github fs-5"></i></a>
+                    <a href="#"><i class="bi bi-linkedin fs-5"></i></a>
+                    <a href="https://t.me/BANANCHIKIREALRB" target="_blank" rel="noopener noreferrer">
+                        <i class="bi bi-telegram fs-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

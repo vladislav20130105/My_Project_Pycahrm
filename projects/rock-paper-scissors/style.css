@@ -1,0 +1,262 @@
+:root {
+            --bg: #090912;
+            --card-bg: #0f0f1a;
+            --accent-1: #00f5d4; /* бирюзовый */
+            --accent-2: #f15bb5; /* розовый */
+            --border: #2a2a45;
+            --text: #e0e0ff;
+            --text-muted: #8a8aa0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text);
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ❄️ СНЕГ */
+        #snowflake-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .snowflake {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.7;
+            filter: blur(0.3px);
+            top: -20px;
+        }
+
+        /* Заставка */
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        #splash h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-1));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 300% 300%;
+            animation: gradientShift 4s ease-in-out infinite;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #splash .credit {
+            position: absolute;
+            bottom: 20px;
+            font-size: 1rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* Основной контейнер — скрыт до окончания заставки */
+        .game-container {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 550px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid var(--border);
+            box-shadow:
+                0 0 20px rgba(0, 245, 212, 0.3),
+                inset 0 0 10px rgba(0, 100, 100, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .game-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1.main-title {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-1));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 300% 300%;
+            animation: gradientShift 6s ease-in-out infinite;
+            letter-spacing: 1px;
+        }
+
+        /* Счётчики */
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            font-size: 1.3rem;
+            background: rgba(25, 25, 45, 0.8);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 8px rgba(0, 245, 212, 0.2);
+        }
+
+        .score-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .score-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .score-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-1);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 35px 0;
+            flex-wrap: wrap;
+        }
+
+        .buttons button {
+            width: 80px;
+            height: 80px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(30, 30, 50, 0.8);
+            color: white;
+            font-size: 2.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            outline: none;
+            border: 1px solid var(--border);
+        }
+
+        .buttons button:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 20px rgba(0, 245, 212, 0.5);
+        }
+
+        /* Цвета кнопок при наведении */
+        #rock:hover { box-shadow: 0 0 20px rgba(241, 91, 181, 0.7); }
+        #paper:hover { box-shadow: 0 0 20px rgba(0, 245, 212, 0.7); }
+        #scissors:hover { box-shadow: 0 0 20px rgba(157, 78, 221, 0.7); }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(25, 25, 45, 0.8);
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 10px;
+            background: rgba(15, 15, 30, 0.9);
+            color: var(--text);
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .action-btn {
+            margin-top: 20px;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            border: 2px solid;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: transparent;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+
+        .reset-btn {
+            color: var(--accent-2);
+            border-color: var(--accent-2);
+        }
+        .reset-btn:hover {
+            background: var(--accent-2);
+            color: var(--bg);
+            box-shadow: 0 0 20px rgba(241, 91, 181, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .home-btn {
+            color: var(--accent-1);
+            border-color: var(--accent-1);
+        }
+        .home-btn:hover {
+            background: var(--accent-1);
+            color: var(--bg);
+            box-shadow: 0 0 20px rgba(0, 245, 212, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .win { color: var(--accent-1); text-shadow: 0 0 8px rgba(0, 245, 212, 0.6); }
+        .lose { color: var(--accent-2); text-shadow: 0 0 8px rgba(241, 91, 181, 0.6); }
+        .draw { color: #9d4edd; text-shadow: 0 0 8px rgba(157, 78, 221, 0.6); }

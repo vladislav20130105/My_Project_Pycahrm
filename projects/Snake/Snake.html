@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Змейка</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- ❄️ СНЕГ -->
+<div id="snowflake-container"></div>
+
+<!-- ОБРАТНЫЙ ОТСЧЁТ -->
+<div id="countdownOverlay">
+    <div id="countdownText">3</div>
+</div>
+
+<!-- ЭКРАН ПРИВЕТСТВИЯ -->
+<div id="welcomeScreen">
+    <h1 id="welcomeTitle">🐍 ЗМЕЙКА</h1>
+    <div id="welcomeAuthor">by: BANANCHIKIREAL</div>
+</div>
+
+<!-- МЕНЮ НАЧАЛА -->
+<div id="startMenu">
+    <h2>ГОТОВЫ ИГРАТЬ?</h2>
+    <div class="btn-group">
+        <button class="btn btn-primary" id="startGameBtn">▶️ Начать игру</button>
+        <button class="btn btn-secondary" id="settingsBtn">⚙️ Настройки</button>
+    </div>
+</div>
+
+<!-- ОСНОВНОЙ ИГРОВОЙ КОНТЕЙНЕР -->
+<div class="game-container" id="gameContainer" style="opacity: 0; pointer-events: none; transition: opacity 0.5s;">
+    <div class="stats" id="statsDisplay">
+        <div>Счёт: <span id="score">0</span></div>
+        <div>Рекорд: <span id="highScore">0</span></div>
+    </div>
+    <canvas id="gameCanvas" tabindex="0"></canvas>
+
+    <div class="in-game-buttons" id="inGameButtons">
+        <button class="btn btn-secondary back-to-menu" id="backToMenuBtn">🏠 В главное меню</button>
+        <button class="btn btn-primary" id="restartInGameBtn">▶️ Начать игру</button>
+    </div>
+</div>
+
+<!-- МЕНЮ НАСТРОЕК -->
+<div id="settingsModal">
+    <h3>⚙️ НАСТРОЙКИ</h3>
+    <div class="setting-item">
+        <label for="skinSelect">Скин змейки:</label>
+        <select id="skinSelect"></select>
+    </div>
+    <div class="setting-item">
+        <label for="speedSlider">Скорость: <span id="speedValue">5</span>/10</label>
+        <input type="range" id="speedSlider" min="1" max="10" value="5">
+    </div>
+    <div class="setting-item">
+        <label for="appleSlider">Количество яблок: <span id="appleValue">1</span>/10</label>
+        <input type="range" id="appleSlider" min="1" max="10" value="1">
+    </div>
+    <div class="setting-item">
+        <label for="sizeSelect">Размер поля:</label>
+        <select id="sizeSelect">
+            <option value="small">Маленький (400×300)</option>
+            <option value="medium" selected>Средний (500×400)</option>
+            <option value="large">Большой (600×450)</option>
+        </select>
+    </div>
+    <div class="modal-buttons" style="margin-top: 30px; display: flex; gap: 10px; justify-content: space-between;">
+        <button class="btn btn-secondary" id="resetSettingsBtn">🔄 Сбросить</button>
+        <button class="btn btn-primary" id="applySettings">Применить</button>
+    </div>
+    <!-- ✅ КНОПКА СБРОСА ПРОГРЕССА -->
+    <button class="btn btn-secondary" id="resetProgressBtn" style="margin-top: 15px; width: 100%;">🗑️ Сбросить
+        прогресс
+    </button>
+    <button class="btn btn-secondary" id="closeSettings" style="margin-top: 15px; width: 100%;">Закрыть</button>
+</div>
+
+<!-- OKНО СМЕРТИ -->
+<div class="game-over" id="gameOver">
+    <h2>ИГРА ОКОНЧЕНА!</h2>
+    <p>Ваш счёт: <span id="finalScore">0</span></p>
+    <div class="btn-group">
+        <button class="btn btn-primary" id="retryBtn">Сыграть ещё</button>
+        <button class="btn btn-secondary" id="closeGameOverBtn">Закрыть</button>
+    </div>
+</div>
+
+<!-- УВЕДОМЛЕНИЯ -->
+<div id="angelNotification">АНГЕЛЬСКИЙ ФРУКТ! +100</div>
+<div id="shieldNotification">РАДУЖНЫЙ ЩИТ! -50% ОЧКОВ</div>
+
+<!-- КНОПКА "НАЗАД К ПОРТФОЛИО" -->
+<div id="portfolioLink">
+    <a href="../../whole_index/index.html" class="back-link">🏠 Вернуться на портфолио</a>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

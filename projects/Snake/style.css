@@ -1,0 +1,415 @@
+ :root {
+      --bg: #090912;
+      --card-bg: #0f0f1a;
+      --accent-1: #00f5d4;
+      --accent-2: #f15bb5;
+      --border: #2a2a45;
+      --text: #e0e0ff;
+      --text-muted: #8a8aa0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ❄️ СНЕГ */
+    #snowflake-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .snowflake {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.7;
+      filter: blur(0.3px);
+      top: -20px;
+    }
+
+    .game-container {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 30px;
+      width: 100%;
+      max-width: min(700px, 100%);
+      text-align: center;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 25px rgba(0, 245, 212, 0.25);
+      overflow: hidden;
+    }
+
+    /* ЭКРАН ПРИВЕТСТВИЯ */
+    #welcomeScreen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 30;
+      background: var(--bg);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    #welcomeScreen.active {
+      opacity: 1;
+      pointer-events: none;
+    }
+
+    #welcomeTitle {
+      font-size: 3.5rem;
+      margin-bottom: 30px;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-1));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 300% 300%;
+      animation: gradientShift 6s ease-in-out infinite;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+    }
+
+    #welcomeScreen.active #welcomeTitle {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ✅ НАДПИСЬ АВТОРА */
+    #welcomeAuthor {
+      position: absolute;
+      bottom: 30px;
+      font-size: 1.2rem;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      opacity: 0;
+      transition: opacity 0.8s ease 0.5s;
+    }
+
+    #welcomeScreen.active #welcomeAuthor {
+      opacity: 1;
+    }
+
+    /* МЕНЮ НАЧАЛА */
+    #startMenu {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(15, 15, 30, 0.95);
+      padding: 30px;
+      border-radius: 20px;
+      border: 2px solid var(--accent-1);
+      text-align: center;
+      z-index: 10;
+      width: 80%;
+      max-width: 400px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+
+    #startMenu.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #startMenu h2 {
+      color: var(--accent-1);
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 20px 0;
+      font-size: 1.2rem;
+      color: var(--accent-1);
+    }
+
+    #gameCanvas {
+      background: rgba(15, 15, 30, 0.7);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      height: auto;
+    }
+
+    #gameCanvas:focus {
+      outline: none;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      font-size: 1.05rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+      border: 2px solid;
+      border-radius: 30px;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 1px;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      color: var(--accent-2);
+      border-color: var(--accent-2);
+    }
+    .btn-primary:hover {
+      background: var(--accent-2);
+      color: var(--bg);
+      box-shadow: 0 0 20px rgba(241, 91, 181, 0.7);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      color: var(--accent-1);
+      border-color: var(--accent-1);
+    }
+    .btn-secondary:hover {
+      background: var(--accent-1);
+      color: var(--bg);
+      box-shadow: 0 0 20px rgba(0, 245, 212, 0.7);
+      transform: translateY(-2px);
+    }
+
+    .in-game-buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      display: none;
+    }
+
+    .game-over {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(15, 15, 30, 0.95);
+      padding: 30px;
+      border-radius: 20px;
+      border: 2px solid var(--accent-1);
+      text-align: center;
+      z-index: 10;
+      display: none;
+      width: 80%;
+      max-width: 400px;
+    }
+    .game-over h2 {
+      color: var(--accent-2);
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+    .game-over p {
+      font-size: 1.3rem;
+      margin: 15px 0;
+      color: var(--accent-1);
+    }
+
+    #settingsModal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      z-index: 20;
+      display: none;
+      box-shadow: 0 0 30px rgba(0, 245, 212, 0.3);
+    }
+
+    #settingsModal h3 {
+      margin-bottom: 20px;
+      color: var(--accent-1);
+      font-size: 1.6rem;
+      text-align: center;
+    }
+
+    .setting-item {
+      margin: 18px 0;
+      text-align: left;
+    }
+
+    .setting-item label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      outline: none;
+      -webkit-appearance: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent-1);
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      background: rgba(20, 20, 35, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 25px;
+    }
+
+    .error-message {
+      color: #ff6b6b;
+      font-size: 0.95rem;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    #portfolioLink {
+      display: block;
+      margin-top: 25px;
+    }
+
+    .back-link {
+      display: inline-block;
+      padding: 12px 30px;
+      color: var(--accent-1);
+      text-decoration: none;
+      font-size: 1.1rem;
+      border: 2px solid var(--accent-1);
+      border-radius: 30px;
+      transition: all 0.3s;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .back-link:hover {
+      background: var(--accent-1);
+      color: var(--bg);
+      box-shadow: 0 0 20px rgba(0, 245, 212, 0.7);
+      transform: translateY(-2px);
+    }
+
+    /* УВЕДОМЛЕНИЯ */
+    #angelNotification, #shieldNotification {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 15, 30, 0.95);
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      z-index: 40;
+      opacity: 0;
+      pointer-events: none;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    #angelNotification {
+      border: 2px solid #00f5d4;
+      background: linear-gradient(90deg, #00f5d4, #f15bb5, #ffd700);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 8px rgba(255,255,255,0.4);
+    }
+
+    #shieldNotification {
+      border: 2px solid #ff6b6b;
+      color: #ff6b6b;
+    }
+
+    /* ОВЕРЛЕЙ ОБРАТНОГО ОТСЧЁТА */
+    #countdownOverlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(9, 9, 18, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 35;
+      color: var(--accent-1);
+      font-size: 5rem;
+      font-weight: 700;
+      display: none;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .locked-option {
+      color: var(--text-muted) !important;
+      opacity: 0.5;
+    }

@@ -1,0 +1,256 @@
+:root {
+    --bg: #090912;
+    --card-bg: #0f0f1a;
+    --accent-1: #00f5d4; /* бирюзовый */
+    --accent-2: #f15bb5; /* розовый */
+    --border: #2a2a45;
+    --text: #e0e0ff;
+    --text-muted: #8a8aa0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text);
+    padding: 20px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ❄️ СНЕГ */
+#snowflake-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.snowflake {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.7;
+    filter: blur(0.3px);
+    top: -20px;
+}
+
+/* Заставка */
+#splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+#splash h1 {
+    font-size: 2.8rem; /* уменьшено с 4rem */
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-1));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 300% 300%;
+    animation: gradientShift 4s ease-in-out infinite;
+    letter-spacing: 0.5px; /* уменьшено с 2px */
+    font-weight: 600; /* чуть плотнее шрифт */
+    text-transform: uppercase;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#splash .credit {
+    position: absolute;
+    bottom: 20px;
+    font-size: 1rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+/* Основной контейнер — скрыт до окончания заставки */
+.calc-container {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 550px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.3),
+    inset 0 0 10px rgba(0, 100, 100, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.calc-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1.main-title {
+    font-size: 2.3rem;
+    margin-bottom: 25px;
+    background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-1));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 300% 300%;
+    animation: gradientShift 6s ease-in-out infinite;
+    letter-spacing: 1px;
+}
+
+.step {
+    font-size: 1.1rem;
+    margin: 18px 0 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.3rem;
+    text-align: center;
+    background: rgba(20, 20, 35, 0.7);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: white;
+    margin: 8px 0 20px;
+    outline: none;
+    font-family: 'Orbitron', sans-serif;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+input:focus, select:focus {
+    border-color: var(--accent-1);
+    box-shadow: 0 0 0 0.25rem rgba(0, 245, 212, 0.25);
+    background: rgba(25, 25, 45, 0.9);
+    color: white;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    border: 2px solid;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: transparent;
+    text-decoration: none;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+.btn-calculate {
+    color: var(--accent-2);
+    border-color: var(--accent-2);
+}
+
+.btn-calculate:hover {
+    background: var(--accent-2);
+    color: var(--bg);
+    box-shadow: 0 0 20px rgba(241, 91, 181, 0.7);
+    transform: translateY(-2px);
+}
+
+.btn-clear {
+    color: var(--accent-1);
+    border-color: var(--accent-1);
+}
+
+.btn-clear:hover {
+    background: var(--accent-1);
+    color: var(--bg);
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.7);
+    transform: translateY(-2px);
+}
+
+.result-box {
+    margin-top: 25px;
+    padding: 20px;
+    background: rgba(25, 25, 45, 0.8);
+    border-radius: 14px;
+    border: 1px solid var(--accent-1);
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--accent-1);
+    box-shadow: 0 0 8px rgba(0, 245, 212, 0.3);
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 30px;
+    color: var(--accent-1);
+    text-decoration: none;
+    font-size: 1.1rem;
+    border: 2px solid var(--accent-1);
+    border-radius: 30px;
+    transition: all 0.3s;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.back-link:hover {
+    background: var(--accent-1);
+    color: var(--bg);
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.7);
+    transform: translateY(-2px);
+}
+
+h2 {
+    margin: 25px 0 12px;
+    color: var(--accent-1);
+    font-size: 1.4rem;
+    text-shadow: 0 0 8px rgba(0, 245, 212, 0.5);
+    letter-spacing: 1px;
+}

@@ -1,0 +1,263 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --neon-pink: #f15bb5;
+  --neon-turquoise: #00f5d4;
+  --dark-bg: #090912;
+  --card-bg: #0f0f1a;
+  --text-light: #e0e0ff;
+  --text-muted: #8a8aa0;
+  --border: #2a2a45;
+}
+
+/* === Обязательная анимация перелива === */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* === Общие стили === */
+body {
+  background: var(--dark-bg);
+  color: var(--text-light);
+  font-family: 'Orbitron', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0 40px;
+}
+
+/* === Снег (фон) === */
+.snowflakes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 1;
+}
+.snowflakes div {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.7;
+  filter: blur(0.3px);
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  to { transform: translateY(100vh); }
+}
+
+/* === Заставка === */
+#splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--dark-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  opacity: 1;
+  pointer-events: none;
+  animation: fadeOut 0.5s forwards 2s;
+}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+#splash h1 {
+  font-size: 3rem;
+  background: linear-gradient(90deg, var(--neon-turquoise), var(--neon-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% 200%;
+  animation: gradientMove 3s ease infinite;
+  margin-bottom: 1.5rem;
+}
+#splash p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* === Кнопка возврата к портфолио === */
+#portfolio-link {
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+#portfolio-link a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  border-bottom: 1px dashed var(--text-muted);
+  transition: color 0.3s, border-color 0.3s;
+}
+#portfolio-link a:hover {
+  color: var(--neon-turquoise);
+  border-bottom-color: var(--neon-turquoise);
+}
+
+/* === Заголовок и статистика === */
+#header {
+  margin-bottom: 16px;
+  text-align: center;
+}
+#header h2 {
+  font-size: 2rem;
+  background: linear-gradient(90deg, var(--neon-pink), var(--neon-turquoise));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% 200%;
+  animation: gradientMove 4s ease infinite;
+}
+#stats {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* === Игровая рамка (сетка 3x2) === */
+#game-table {
+  background: var(--card-bg);
+  border-radius: 14px;
+  padding: 16px;
+  width: 95%;
+  max-width: 420px;
+  margin: 12px 0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border);
+  position: relative;
+  z-index: 10;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 12px;
+  aspect-ratio: 3 / 2;
+  width: 100%;
+}
+
+.cell {
+  background: rgba(30, 30, 50, 0.6);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  user-select: none;
+}
+
+.cell:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 14px rgba(0, 245, 212, 0.55);
+}
+
+.cell.active {
+  box-shadow: 0 0 20px var(--neon-turquoise);
+  background: rgba(0, 245, 212, 0.25);
+}
+
+.cell.error {
+  box-shadow: 0 0 24px #ff0055;
+  background: rgba(241, 91, 181, 0.25);
+}
+
+/* === Кнопки управления === */
+.controls {
+  margin: 14px 0 10px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  z-index: 10;
+  position: relative;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #222, #111);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 245, 212, 0.4);
+}
+
+#start-btn {
+  background: linear-gradient(135deg, var(--neon-pink), var(--neon-turquoise));
+  color: #000;
+  font-weight: bold;
+}
+
+/* === Настройки === */
+#settings {
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(15, 15, 26, 0.7);
+  border-radius: 12px;
+  width: 95%;
+  max-width: 360px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  border: 1px solid var(--border);
+  z-index: 10;
+  position: relative;
+}
+
+#settings.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#settings h3 {
+  margin-bottom: 12px;
+  color: var(--neon-turquoise);
+  font-size: 1.2rem;
+}
+
+/* === Дополнительно: универсальный стиль для переливающегося текста === */
+.neon-gradient {
+  background: linear-gradient(90deg, var(--neon-turquoise), var(--neon-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% 200%;
+  animation: gradientMove 3s ease infinite;
+}

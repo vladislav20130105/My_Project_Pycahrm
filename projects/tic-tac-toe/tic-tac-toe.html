@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Крестики-нолики</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Заставка -->
+<div id="splash">
+    <h1>Крестики-нолики</h1>
+    <div class="credit">by:BANANCHIKIREAL</div>
+</div>
+
+<!-- ❄️ СНЕГ -->
+<div id="snowflake-container"></div>
+
+<h1 class="main-title">🎮 Крестики-нолики</h1>
+
+<div class="game-container" id="mainGame">
+    <div class="game-info">
+        <h2 class="text-center mb-4">Играйте против компьютера</h2>
+
+        <div class="current-player" id="currentPlayer">
+            Ваш ход: <span class="x">X</span>
+        </div>
+
+        <div class="score-board">
+            <div class="score-item">
+                <h5>Вы (X)</h5>
+                <span id="playerScore">0</span>
+            </div>
+            <div class="score-item">
+                <h5>Ничья</h5>
+                <span id="drawScore">0</span>
+            </div>
+            <div class="score-item">
+                <h5>Компьютер (O)</h5>
+                <span id="computerScore">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-board" id="gameBoard">
+        <button class="cell" onclick="makeMove(0)"></button>
+        <button class="cell" onclick="makeMove(1)"></button>
+        <button class="cell" onclick="makeMove(2)"></button>
+        <button class="cell" onclick="makeMove(3)"></button>
+        <button class="cell" onclick="makeMove(4)"></button>
+        <button class="cell" onclick="makeMove(5)"></button>
+        <button class="cell" onclick="makeMove(6)"></button>
+        <button class="cell" onclick="makeMove(7)"></button>
+        <button class="cell" onclick="makeMove(8)"></button>
+    </div>
+
+    <div class="winner-message" id="winnerMessage"></div>
+
+    <div class="btn-group">
+        <button class="btn-action btn-new-game" onclick="newGame()">Новая игра</button>
+        <button class="btn-action btn-reset-scores" onclick="resetScores()">Сбросить счёт</button>
+    </div>
+</div>
+
+<a href="../../whole_index/index.html" class="back-link">🏠 Вернуться на портфолио</a>
+<script src="script.js"></script>
+</body>
+</html>
