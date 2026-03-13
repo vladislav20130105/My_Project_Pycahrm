@@ -83,14 +83,13 @@ h1 {
     justify-content: center;
     border: 2px solid var(--border);
     border-radius: 12px;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: bold;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
     color: white;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-size: cover;
-    background-position: center;
+    background: var(--card-bg);
 }
 
 #center-pile.red {
@@ -132,7 +131,7 @@ h1 {
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    font-size: 0.85rem;
+    font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
@@ -141,8 +140,6 @@ h1 {
     text-shadow: 0 0 6px rgba(255, 255, 255, 0.9);
     border: 2px solid rgba(42, 42, 69, 0.5);
     background: var(--card-bg);
-    background-size: cover;
-    background-position: center;
 }
 
 .card:hover {

@@ -1,0 +1,15 @@
+{
+  "name": "uno-game",
+  "version": "1.0.0",
+  "description": "UNO card game with number-based cards",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": ["uno", "game", "cards", "javascript"],
+  "author": "Your Name",
+  "license": "MIT"
+}

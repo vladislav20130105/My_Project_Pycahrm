@@ -92,23 +92,23 @@ let isRespondingWithWild = false;
 let computerFinished = [];
 let numBots = 0;
 
-function getCardImage(card) {
+function getCardContent(card) {
     if (card.color === 'wild') {
         if (card.value === '+4') {
-            return `../../img/uno_cards_renamed_tight/wild_draw4_2.png`;
+            return '+4';
         }
-        return `../../img/uno_cards_renamed_tight/wild_1.png`;
+        return 'W';
     }
     if (card.value === '+2') {
-        return `../../img/uno_cards_renamed_tight/${card.color}_draw2.png`;
+        return '+2';
     }
     if (card.value === 'block') {
-        return `../../img/uno_cards_renamed_tight/${card.color}_skip.png`;
+        return '⊘';
     }
     if (card.value === 'reverse') {
-        return `../../img/uno_cards_renamed_tight/reverse_${card.color}.png`;
+        return '↻';
     }
-    return `../../img/uno_cards_renamed_tight/${card.color}_${card.value}.png`;
+    return card.value;
 }
 
 function createDeck() {
@@ -158,8 +158,8 @@ function renderPlayerHand() {
     el.innerHTML = "";
     playerHand.forEach((card, index) => {
         const div = document.createElement("div");
-        div.className = `card`;
-        div.style.backgroundImage = `url(${getCardImage(card)})`;
+        div.className = `card ${card.color}`;
+        div.textContent = getCardContent(card);
         div.onclick = () => playCard(index);
         el.appendChild(div);
     });
@@ -182,14 +182,8 @@ function updateCenterPile() {
     const el = document.getElementById("center-pile");
     if (!el) return;
     const top = discardPile[discardPile.length - 1];
-    if (top.value === 'wild' || top.value === '+4') {
-        el.style.backgroundImage = 'none';
-        el.style.backgroundColor = top.color;
-        el.textContent = top.value;
-    } else {
-        el.style.backgroundImage = `url(${getCardImage(top)})`;
-        el.textContent = '';
-    }
+    el.className = `center-pile ${top.color}`;
+    el.textContent = getCardContent(top);
 }
 
 function playCard(index) {
